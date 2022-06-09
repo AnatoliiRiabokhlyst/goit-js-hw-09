@@ -13,8 +13,8 @@ function changeColor() {
     addColor = setInterval(() => {
         body.style.backgroundColor = getRandomHexColor();
     }, 1000);
-    startBtn.disabled = true;
     stopBtn.disabled = false;
+    startBtn.disabled = true;
 }
 
 function stopChangeColor() {
