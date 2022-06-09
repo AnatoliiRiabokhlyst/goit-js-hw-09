@@ -8,19 +8,19 @@ const stopBtn = document.querySelector('button[data-stop]');
 function getRandomHexColor() {
 return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
-stopBtn.setAttribute("disabled");
+stopBtn.setAttribute("disabled", true);
 function changeColor() {
     addColor = setInterval(() => {
         body.style.backgroundColor = getRandomHexColor();
     }, 1000);
     stopBtn.removeAttribute("disabled");
-    startBtn.setAttribute("disabled");
+    startBtn.setAttribute("disabled", true);
 }
 
 function stopChangeColor() {
     clearInterval(addColor);
     startBtn.removeAttribute("disabled");
-    stopBtn.setAttribute("disabled");
+    stopBtn.setAttribute("disabled", true);
 }
 // -----------------------------EVENTS---------------------------------------
 
