@@ -13,14 +13,14 @@ function changeColor() {
     addColor = setInterval(() => {
         body.style.backgroundColor = getRandomHexColor();
     }, 1000);
-    stopBtn.disabled = false;
-    startBtn.disabled = true;
+    stopBtn.removeAttribute("disabled");
+    startBtn.setAttribute("disabled");
 }
 
 function stopChangeColor() {
     clearInterval(addColor);
-    startBtn.disabled = false;
-    stopBtn.disabled = true;
+    startBtn.removeAttribute("disabled");
+    stopBtn.setAttribute("disabled");
 }
 // -----------------------------EVENTS---------------------------------------
 
