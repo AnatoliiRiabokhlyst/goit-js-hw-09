@@ -37,31 +37,34 @@ function selectDate () {
 function addLeadingZero(value) {
     return String(value).padStart(2, "0");
 }
+function getTime () {
+    const distance = date.latestSelectedDateObj - new Date();
+    const days = addLeadingZero(Math.floor(distance / (1000 * 60 * 60 * 24)));
+    const hours = addLeadingZero(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    const minutes = addLeadingZero(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+    const seconds = addLeadingZero(Math.floor((distance % (1000 * 60)) / 1000));
+    const countdown = `<div class="field">
+    <span class="value" data-days>${days}</span>
+    <span class="label">Days</span>
+    </div>
+    <div class="field">
+    <span class="value" data-hours>${hours}</span>
+    <span class="label">Hours</span>
+    </div>
+    <div class="field">
+    <span class="value" data-minutes>${minutes}</span>
+    <span class="label">Minutes</span>
+    </div>
+    <div class="field">
+    <span class="value" data-seconds>${seconds}</span>
+    <span class="label">Seconds</span>
+    </div>`;
+    timerRef.innerHTML = countdown;
+}
 function startTimer () {
     const timer = setInterval(() => {
-        const now = new Date();
-        const distance = date.latestSelectedDateObj - now;
-        const days = addLeadingZero(Math.floor(distance / (1000 * 60 * 60 * 24)));
-        const hours = addLeadingZero(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-        const minutes = addLeadingZero(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
-        const seconds = addLeadingZero(Math.floor((distance % (1000 * 60)) / 1000));
-        const countdown = `<div class="field">
-        <span class="value" data-days>${days}</span>
-        <span class="label">Days</span>
-        </div>
-        <div class="field">
-        <span class="value" data-hours>${hours}</span>
-        <span class="label">Hours</span>
-        </div>
-        <div class="field">
-        <span class="value" data-minutes>${minutes}</span>
-        <span class="label">Minutes</span>
-        </div>
-        <div class="field">
-        <span class="value" data-seconds>${seconds}</span>
-        <span class="label">Seconds</span>
-        </div>`;
-        timerRef.innerHTML = countdown;
+        const distance = date.latestSelectedDateObj - new Date();;
+        getTime()
         if (distance < 0) {
             clearInterval(timer);
             Notify.failure("Time's up!🥺🥺🥺");
